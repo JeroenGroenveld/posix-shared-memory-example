@@ -5,7 +5,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-
 int main()
 {
     /* Grote van het shared memory object */
@@ -22,13 +21,12 @@ int main()
 
     /* Shared memory object aanmaken
      * Process_1 heeft het shared memory al aangemaakt dus daarom is de 'O_CREATE' mode niet nodig.
-     * Process_2 (dit process) hoeft alleen te lezen van het shared memory ddaarom wordt de 'O_RDONLY'
+     * Process_2 (dit process) hoeft alleen te lezen van het shared memory daarom wordt de 'O_RDONLY'
      * mode meegegeven*/
     shm_fd = shm_open(name, O_RDONLY, 0666);
 
     /* Shared memory object mappen naar het address space van dit process */
     ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
-    printf("Shared memory pointer: %p.\n", ptr);
 
     /* Geschreven strings van Process_1 uitlezen uit het shared memory */
     printf("%s", (char*)ptr);
@@ -38,5 +36,6 @@ int main()
     munmap(ptr, SIZE);
     /* Shared memory verwijderen. */
     shm_unlink(name);
+
     return 0;
 } 

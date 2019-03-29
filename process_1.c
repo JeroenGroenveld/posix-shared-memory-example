@@ -5,7 +5,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-
 int main() {
     /* Grote van het shared memory object */
     const int SIZE = 4096;
@@ -34,7 +33,6 @@ int main() {
 
     /* Shared memory object mappen naar het address space van dit process */
     ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
-    printf("Shared memory pointer: %p.\n", ptr);
 
     /* Strings naar het shared memory schrijven */
     sprintf(ptr, "%s", message_0);
