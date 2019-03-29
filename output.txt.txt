@@ -1,0 +1,5 @@
+root@debiandevc:~/opdrachten-os/week_4# ./process_1
+Shared memory pointer: 0xb7769000.
+
+Shared memory pointer: 0xb771b000.
+Hello World!
