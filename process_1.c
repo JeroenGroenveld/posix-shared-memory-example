@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 int main() {
-    /* Grote van het shared memory object */
+    /* Grootte van het shared memory object */
     const int SIZE = 4096;
 
     /* Naam van shared memory object */
@@ -23,15 +23,15 @@ int main() {
     void* ptr;
 
     /* Shared memory object creëren.
-     * Process_1 (dit process) creëert en het shared memory object, daarom
+     * Process_1 (dit proces) creëert en het shared memory object, daarom
      * moet de 'O_CREATE' mode meegeven worden. Process_1 gaat ook schrijven
      * naar het shared memory, daaro moet de 'O_RDWR' mode meegegeven worden.*/
     shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
 
-    /* Grote instellen voor het shared memory object */
+    /* Grootte instellen voor het shared memory object */
     ftruncate(shm_fd, SIZE);
 
-    /* Shared memory object mappen naar het address space van dit process */
+    /* Shared memory object mappen naar het address space van dit proces */
     ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
 
     /* Strings naar het shared memory schrijven */
